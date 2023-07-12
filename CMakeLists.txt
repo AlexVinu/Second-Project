@@ -12,6 +12,8 @@ add_executable(${PROJECT_NAME}
 	res/stb_image.h
 	src/resources/ResourceManager.h
 	src/resources/ResourceManager.cpp
+	src/render/TextureProgram.h
+	src/render/TextureProgram.cpp
 )
 
 target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_17)
@@ -25,6 +27,8 @@ add_subdirectory(external/glfw)
 target_link_libraries(${PROJECT_NAME} glfw)
 add_subdirectory(external/glad)
 target_link_libraries(${PROJECT_NAME} glad)
+
+include_directories(external/glm)
 
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_directory

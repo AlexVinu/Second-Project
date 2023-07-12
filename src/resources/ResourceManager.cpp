@@ -1,16 +1,28 @@
 #include"ResourceManager.h"
 #include<iostream>
 #include "C:/OpenGL/Second-Project/res/stb_image.h"
+
 ResourceManager::ResourceManager(const std::string& cppPath) {
 	size_t found = cppPath.find_last_of("/\\");
 	mainPath = cppPath.substr(0, found);
 }
 
-unsigned char* ResourceManager::load_texture(const std::string& RelPath, int& width, int& height, int& channel)
+std::shared_ptr<Texture> ResourceManager::load_texture(std::string texturename, const std::string& RelPath)
 {
+	Texture textureObj;
+	std::shared_ptr<Texture> texture = std::make_shared<Texture>(textureObj);
 	std::string Path = mainPath + "/" + RelPath;
-	std::cerr << "Path " << mainPath << std::endl;
-	return stbi_load(Path.c_str(),&width, &height, &channel, 0);
+	texture->image = stbi_load(Path.c_str(),&texture->width, &texture->height, &texture->channels, 0);
+	if (!texture->image) {
+		std::cerr << "loading textures failed\n";
+	}
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, texture->width, texture->height, 0, GL_RGBA, GL_UNSIGNED_BYTE, texture->image);
+	glGenerateMipmap(GL_TEXTURE_2D);
+
+	stbi_image_free(texture->image);
+	glBindBuffer(GL_TEXTURE_2D, 0);
+	textureMap.insert(std::pair(texturename, texture));
+	return texture;
 }
 
 std::string ResourceManager::getfileString(std::string name, const std::string& RelPath)

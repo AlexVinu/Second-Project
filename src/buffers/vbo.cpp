@@ -2,10 +2,12 @@
 #include<iostream>
 
 GLfloat points[] = {
-	0.0, 1.0, 0.0,		1.0, 0.0, 0.0,		0.0, 0.0,
-	1.0, -1.0, 0.0,		0.0, 1.0, 0.0,		1.0, 0.0,
-	-1.0, -1.0, 0.0,	0.0, 0.0, 1.0,		0.5 ,1.0,
+	0.5f,  0.5f, 0.0f, 1.0f,  1.0f, 0.0f, 0.0f,   1.0f, 1.0f,   // Верхний правый
+	 0.5f, -0.5f, 0.0f, 1.0f,  0.0f, 1.0f, 0.0f,   1.0f, 0.0f,   // Нижний правый
+	-0.5f, -0.5f, 0.0f, 1.0f,  0.0f, 0.0f, 1.0f,   0.0f, 0.0f,   // Нижний левый
+	-0.5f,  0.5f, 0.0f, 1.0f,  1.0f, 1.0f, 0.0f,   0.0f, 1.0f    // Верхний левый
 };
+
 
 Buffers::VertexBufferObject::VertexBufferObject()
 {
@@ -21,12 +23,12 @@ Buffers::VertexBufferObject::VertexBufferObject()
 	}
 
 	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)0);
+	glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 9 * sizeof(GLfloat), (GLvoid*)0);
 
 	glEnableVertexAttribArray(1);
-	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)(3 * sizeof(GLfloat)));
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 9 * sizeof(GLfloat), (GLvoid*)(4 * sizeof(GLfloat)));
 
 	glEnableVertexAttribArray(2);
-	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)(6 * sizeof(GLfloat)));
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 9 * sizeof(GLfloat), (GLvoid*)(7 * sizeof(GLfloat)));
 
 }

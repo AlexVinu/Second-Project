@@ -13,8 +13,8 @@ namespace Renderer {
 		ShaderProgram(ShaderProgram&&) = delete;
 
 		void use_ShaderProgram() { glUseProgram(this->ID_ShaderProgram); }
-		bool IsCompiled() const { return m_IsCompiled; };
-
+		bool IsCompiled() const { return m_IsCompiled; }
+		GLuint Give_Id()const  { return ID_ShaderProgram; }
 		ShaderProgram::~ShaderProgram()
 		{
 			glDeleteProgram(ID_ShaderProgram);

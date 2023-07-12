@@ -1,10 +1,14 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 #include "render/ShaderProgram.h"
 #include "buffers/vbo.h"
 #include "resources/ResourceManager.h"
 #include <iostream>
+#include "render/TextureProgram.h"
 #define STB_IMAGE_IMPLEMENTATION
 #include "C:/OpenGL/Second-Project/res/stb_image.h"
 
@@ -13,7 +17,10 @@ extern "C" {
     // __declspec(dllexport) int AmdPowerXpressRequestHighPerformance = 1; // For AMD
 }
 
-
+GLuint verticies[] = {
+    0,1,3,
+    1,2,3,
+};
 
 int WindowSizeX = 640;
 int WindowSizeY = 480;
@@ -60,38 +67,27 @@ int main(int argc, char* argv[])
     glGenVertexArrays(1, &vao);
     glBindVertexArray(vao);
 
-    //Buffers::VertexBufferObject vbo;
+    GLuint ibo = 0;
+    glGenBuffers(1, &ibo);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(verticies), verticies, GL_STATIC_DRAW);
 
     Buffers::VertexBufferObject vbo;
     ResourceManager res(argv[0]);
     auto pFirst_ShaderProgram = res.load_shader("First_ShaderProgram", "res/Shaders/vertexShader.txt", "res/Shaders/fragmentShader.txt");
     glBindVertexArray(0);
 
-    GLuint textures = 0;
-    glGenTextures(1, &textures);
-    glBindTexture(GL_TEXTURE_2D, textures);
+    std::cerr << "1\n";
 
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_MIRRORED_REPEAT);
+    auto brick = res.load_texture("brick", "res/textures/brick.png");
 
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    std::cerr << "2\n";
+
+    auto smile = res.load_texture("smile", "res/textures/smile.png");
+
+    std::cerr << "end\n";
 
 
-    int width;
-    int height;
-    int channels;
-    auto image = res.load_texture("res/textures/brick.png", width, height, channels);
-
-    if (!image) {
-        std::cerr << "Image don`t downloaded\n";
-    }
-
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
-    glGenerateMipmap(GL_TEXTURE_2D);
-
-    stbi_image_free(image);
-    glBindTexture(GL_TEXTURE_2D, 0);
 
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window))
@@ -99,10 +95,25 @@ int main(int argc, char* argv[])
         /* Render here */
         glClear(GL_COLOR_BUFFER_BIT);
 
-        glBindTexture(GL_TEXTURE_2D, textures);
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, brick->Give_ID());
+        glUniform1i(glGetUniformLocation(pFirst_ShaderProgram->Give_Id(), "ourTexture1"), 0);
+        glActiveTexture(GL_TEXTURE1);
+        glBindTexture(GL_TEXTURE_2D, smile->Give_ID());
+        glUniform1i(glGetUniformLocation(pFirst_ShaderProgram->Give_Id(), "ourTexture2"), 1);
+
         pFirst_ShaderProgram->use_ShaderProgram();
+
+        glm::mat4 transform(1.0f);
+        transform = glm::translate(transform, glm::vec3(0.0f, 0.0f, 0.0f));
+        transform = glm::rotate(transform, (GLfloat)glfwGetTime() * 5.0f, glm::vec3(1.0f, 1.0f, 1.0f));
+        // Get matrix's uniform location and set matrix
+        GLint transformLoc = glGetUniformLocation(pFirst_ShaderProgram->Give_Id(), "transform");
+        glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(transform));
+
         glBindVertexArray(vao);
-        glDrawArrays(GL_TRIANGLES, 0, 3);
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        glBindVertexArray(0);
 
         /* Swap front and back buffers */
         glfwSwapBuffers(window);
@@ -110,6 +121,8 @@ int main(int argc, char* argv[])
         /* Poll for and process events */
         glfwPollEvents();
     }
+    glDeleteVertexArrays(1, &vao);
+    glDeleteBuffers(1, &ibo);
 
     glfwTerminate();
     return 0;
