@@ -6,6 +6,24 @@ ResourceManager::ResourceManager(const std::string& cppPath) {
 	mainPath = cppPath.substr(0, found);
 }
 
+void ResourceManager::getObjects_Textures()
+{
+	std::map<std::string, std::shared_ptr<Texture>>::iterator iter = textureMap.begin();
+	while (iter != textureMap.end()) {
+		std::cerr << "texture " << iter->first << " with id " << iter->second->Give_ID()<<std::endl;
+		iter++;
+	}
+}
+
+void ResourceManager::getObjects_Shaders()
+{
+	std::map<std::string, std::shared_ptr<Renderer::ShaderProgram>>::iterator iter = shaderMaps.begin();
+	while (iter != shaderMaps.end()) {
+		std::cerr << "shader " << iter->first << " with id " << iter->second->Give_Id() << std::endl;
+		iter++;
+	}
+}
+
 std::shared_ptr<Texture> ResourceManager::load_texture(std::string texturename, const std::string& RelPath)
 {
 	std::string Path = mainPath + "/" + RelPath;

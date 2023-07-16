@@ -1,5 +1,6 @@
 #include "TextureProgram.h"
 #include<iostream>
+#include "C:/OpenGL/Second-Project/res/stb_image.h"
 
 Texture::Texture(const std::string &Path)
 {
