@@ -14,6 +14,8 @@ add_executable(${PROJECT_NAME}
 	src/resources/ResourceManager.cpp
 	src/render/TextureProgram.h
 	src/render/TextureProgram.cpp
+	src/camera/camera.h
+	src/camera/camera.cpp
 )
 
 target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_17)
