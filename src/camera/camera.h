@@ -32,6 +32,8 @@ public:
 	void mouse_move(GLfloat xoffset, GLfloat yoffset);
 	void mouse_scroll( double yoffset);
 	glm::mat4 viewMatrix() { return glm::lookAt(Position, Position + Front, Up); }
+
+	~Camera() {}
 private:
 	void update_vectors();
 };

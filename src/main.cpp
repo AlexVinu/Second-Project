@@ -57,51 +57,52 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 void mouse_callback(GLFWwindow* window, double xpos, double ypos);
 void mouse_scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 
-GLfloat points2[] = {
-    -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
-     0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
-     0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-     0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-    -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
-    -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+float vertices[] = {
+    -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+     0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+     0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+     0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+    -0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+    -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
 
-    -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-     0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-     0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
-     0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
-    -0.5f,  0.5f,  0.5f,  0.0f, 1.0f,
-    -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+    -0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+     0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+     0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+     0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+    -0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+    -0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
 
-    -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-    -0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-    -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-    -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-    -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-    -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+    -0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
+    -0.5f,  0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
+    -0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
+    -0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
+    -0.5f, -0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
+    -0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
 
-     0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-     0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-     0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-     0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-     0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-     0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+     0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
+     0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
+     0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
+     0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
+     0.5f, -0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
+     0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
 
-    -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-     0.5f, -0.5f, -0.5f,  1.0f, 1.0f,
-     0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-     0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-    -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-    -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+    -0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
+     0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
+     0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
+     0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
+    -0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
+    -0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
 
-    -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
-     0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-     0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-     0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-    -0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
-    -0.5f,  0.5f, -0.5f,  0.0f, 1.0f
+    -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,
+     0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,
+     0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
+     0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
+    -0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
+    -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f
 };
 
-glm::vec3 LightPos(1.2f, 1.0f, 2.0f);
+glm::vec3 LightPos(3.0f, 1.0f, -3.0f);
+
 
 int main(int argc, char* argv[])
 {
@@ -158,10 +159,13 @@ int main(int argc, char* argv[])
     GLuint light_vbo = 0;
     glGenBuffers(1, &light_vbo);
     glBindBuffer(GL_ARRAY_BUFFER, light_vbo);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(points2), points2, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), (GLvoid*)0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), (GLvoid*)0);
+
+    glEnableVertexAttribArray(1);
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), (GLvoid*)(3 * sizeof(GLfloat)));
 
     glBindVertexArray(0);
 
@@ -192,36 +196,28 @@ int main(int argc, char* argv[])
 
         projection = glm::perspective(camera.fov, (GLfloat)WindowSizeX/ (GLfloat)WindowSizeY, 0.1f, 100.0f);
 
-        pFirst_ShaderProgram->use_ShaderProgram(); //First shader
-
-        GLint modelLoc = glGetUniformLocation(pFirst_ShaderProgram->Give_Id(), "model");
-
-        GLint viewLoc = glGetUniformLocation(pFirst_ShaderProgram->Give_Id(), "view");
-        glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
-
-        GLint projectionLoc = glGetUniformLocation(pFirst_ShaderProgram->Give_Id(), "projection");
-        glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
-
         pLight_ShaderProgram->use_ShaderProgram(); //Second shader
 
-        GLint modelLoc2 = glGetUniformLocation(pLight_ShaderProgram->Give_Id(), "model");
-
-        GLint viewLoc2 = glGetUniformLocation(pLight_ShaderProgram->Give_Id(), "view");
-        glUniformMatrix4fv(viewLoc2, 1, GL_FALSE, glm::value_ptr(view));
-
-        GLint projectionLoc2 = glGetUniformLocation(pLight_ShaderProgram->Give_Id(), "projection");
-        glUniformMatrix4fv(projectionLoc2, 1, GL_FALSE, glm::value_ptr(projection));
-
-        GLint lightColor_loc = glGetUniformLocation(pLight_ShaderProgram->Give_Id(), "lightColor");
-        GLint objectColor_loc = glGetUniformLocation(pLight_ShaderProgram->Give_Id(), "objectColor");
-
-        glUniform3f(lightColor_loc, 1.0f, 1.0f, 1.0f);
-        glUniform3f(objectColor_loc, 1.0f, 0.5f, 0.31f);
-
+        pLight_ShaderProgram->setVec3f("material.ambient", 1.0f, 0.5f, 0.31f);
+        pLight_ShaderProgram->setVec3f("material.diffuse", 1.0f, 0.5f, 0.31f);
+        pLight_ShaderProgram->setVec3f("material.specular", 0.5f, 0.5f, 0.5f);
+        pLight_ShaderProgram->setVec1f("material.shininess", 32.0f);
+        pLight_ShaderProgram->setVec3f("material.color", 1.0f, 1.0f, 1.0f);
+        pLight_ShaderProgram->setVec3f("light.color", 1.0f, 1.0f, 1.0f);
+        pLight_ShaderProgram->setVec3f("light.pos", LightPos.x, LightPos.y, LightPos.z);
+        pLight_ShaderProgram->setVec3f("viewPos", camera.Position.x, camera.Position.y, camera.Position.z);
+        pLight_ShaderProgram->setVec1f("light.power", 0.1f);
+        
         glm::mat4 model2(1.0f);
-        model2 = glm::scale(model2, glm::vec3(3.0f));
+        model2 = glm::scale(model2, glm::vec3(1.5f));
+        model2 = glm::rotate(model2, (GLfloat)glfwGetTime() *0.5f, glm::vec3(1.0f, 0.0f, 0.0f));
+        glm::mat4 translate2 = projection * view * model2;
 
-        glUniformMatrix4fv(modelLoc2, 1, GL_FALSE, glm::value_ptr(model2));
+        GLint model_loc2 = glGetUniformLocation(pLight_ShaderProgram->Give_Id(), "model");
+        glUniformMatrix4fv(model_loc2, 1, GL_FALSE, glm::value_ptr(model2));
+
+        GLint translateLoc2 = glGetUniformLocation(pLight_ShaderProgram->Give_Id(), "translate");
+        glUniformMatrix4fv(translateLoc2, 1, GL_FALSE, glm::value_ptr(translate2));
 
         glBindVertexArray(light_vao);
         glDrawArrays(GL_TRIANGLES, 0, 36);
@@ -229,17 +225,12 @@ int main(int argc, char* argv[])
 
         pLightObject_ShaderProgram->use_ShaderProgram(); //third shader
 
-        GLint viewLoc3 = glGetUniformLocation(pLightObject_ShaderProgram->Give_Id(), "view");
-        glUniformMatrix4fv(viewLoc3, 1, GL_FALSE, glm::value_ptr(view));
-
-        GLint projectionLoc3 = glGetUniformLocation(pLightObject_ShaderProgram->Give_Id(), "projection");
-        glUniformMatrix4fv(projectionLoc3, 1, GL_FALSE, glm::value_ptr(projection));
-
-        GLint modelLoc3 = glGetUniformLocation(pLightObject_ShaderProgram->Give_Id(), "model");
-
         glm::mat4 model3(1.0f);
-        model3 = glm::translate(model3, glm::vec3(5.0f, 0.0f, -5.0f));
-        glUniformMatrix4fv(modelLoc3, 1, GL_FALSE, glm::value_ptr(model3));
+        model3 = glm::translate(model3, glm::vec3(LightPos.x, LightPos.y, LightPos.z));
+        
+        glm::mat4 translate3 = projection * view * model3;
+        GLint translateLoc3 = glGetUniformLocation(pLightObject_ShaderProgram->Give_Id(), "translate");
+        glUniformMatrix4fv(translateLoc3, 1, GL_FALSE, glm::value_ptr(translate3));
 
         glBindVertexArray(light_vao);
         glDrawArrays(GL_TRIANGLES, 0, 36);
@@ -262,8 +253,21 @@ int main(int argc, char* argv[])
                 model = glm::translate(model, cubePositions[i]);
                 GLfloat angle = i - 2.0f;
                 model = glm::rotate(model, (GLfloat)glfwGetTime() * angle, glm::vec3(1.0f, 0.0f, 1.0f));
+                GLint translateLoc = glGetUniformLocation(pFirst_ShaderProgram->Give_Id(), "translate");
+                GLint modelLoc = glGetUniformLocation(pFirst_ShaderProgram->Give_Id(), "model");
                 glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+                glm::mat4 translate = projection * view * model;
+                glUniformMatrix4fv(translateLoc, 1, GL_FALSE, glm::value_ptr(translate));
 
+                GLint viewPosLoc = glGetUniformLocation(pFirst_ShaderProgram->Give_Id(), "viewPosition");
+                glUniform3f(viewPosLoc, camera.Position.x, camera.Position.y, camera.Position.z);
+
+                GLint lightColorLoc = glGetUniformLocation(pFirst_ShaderProgram->Give_Id(), "lightColor");
+                glUniform3f(lightColorLoc, 1.0f, 1.0f, 1.0f);
+
+                GLint lightPosLoc = glGetUniformLocation(pFirst_ShaderProgram->Give_Id(), "lightPosition");
+                glUniform3f(lightPosLoc, LightPos.x, LightPos.y, LightPos.z);
+                
                 glDrawArrays(GL_TRIANGLES, 0, 36);
                 glBindVertexArray(0);
             }
@@ -281,7 +285,9 @@ int main(int argc, char* argv[])
                 model = glm::translate(model, cubePositions[i]);
                 GLfloat angle = i - 2.0f;
                 model = glm::rotate(model, (GLfloat)glfwGetTime() * angle, glm::vec3(1.0f, 0.0f, 1.0f));
-                glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+                GLint translateLoc = glGetUniformLocation(pFirst_ShaderProgram->Give_Id(), "translate");
+                glm::mat4 translate = projection * view * model;
+                glUniformMatrix4fv(translateLoc, 1, GL_FALSE, glm::value_ptr(translate));
 
                 glDrawArrays(GL_TRIANGLES, 0, 36);
                 glBindVertexArray(0);

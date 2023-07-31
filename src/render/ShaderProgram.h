@@ -25,5 +25,10 @@ namespace Renderer {
 		bool CreateShader(const std::string& shader, GLuint &ID, GLenum typeOfShader);
 		GLuint ID_ShaderProgram = 0;
 		bool m_IsCompiled = false;
+	public:
+		void setVec3f(std::string NameOfUniform, float x, float y, float z);
+		void setVec1f(std::string NameOfUniform, float x);
+		void setMatrix4fv();
 	};
+
 }

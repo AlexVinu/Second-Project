@@ -16,6 +16,7 @@ public:
 	std::shared_ptr<Texture> load_texture(std::string texturename, const std::string& RelPath);
 	std::string getfileString(std::string name, const std::string& RelPath);
 	std::shared_ptr<Renderer::ShaderProgram> load_shader(std::string ShaderProgramName, const std::string& RelPathVertex, const std::string& RelPathFragment);
+	~ResourceManager() { shaderMaps.clear(); textureMap.clear();}
 private:
 	std::string mainPath;
 

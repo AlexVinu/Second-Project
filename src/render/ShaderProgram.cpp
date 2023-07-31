@@ -40,4 +40,6 @@ namespace Renderer {
 		}
 		return true;
 	}
+	void ShaderProgram::setVec3f(std::string NameOfUniform, float x, float y, float z){glUniform3f(glGetUniformLocation(this->Give_Id(), NameOfUniform.c_str()), x, y, z);}
+	void ShaderProgram::setVec1f(std::string NameOfUniform, float x){glUniform1f(glGetUniformLocation(this->Give_Id(), NameOfUniform.c_str()), x);}
 }

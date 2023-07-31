@@ -9,7 +9,7 @@ namespace Buffers {
 		VertexBufferObject(const VertexBufferObject&) = delete;
 		VertexBufferObject(VertexBufferObject&&) = delete;
 
-		
+
 		~VertexBufferObject() {
 			vertex_vbo = 0;
 		}

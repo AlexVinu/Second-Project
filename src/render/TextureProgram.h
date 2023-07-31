@@ -7,6 +7,7 @@ public:
 	Texture(const std::string &Path);
 	GLuint Give_ID() { return texture_ID; }
 	bool Is_image_load() { return is_image_load; }
+	~Texture() { texture_ID = 0; }
 private:
 	int width = 0;
 	int height = 0;
